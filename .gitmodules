@@ -1,3 +1,6 @@
 [submodule "section_10"]
 	path = section_10
 	url = https://github.com/artir3/docker-multiconteiner
+[submodule "section_7/docker-react"]
+	path = section_7/docker-react
+	url = https://github.com/artir3/docker-react
