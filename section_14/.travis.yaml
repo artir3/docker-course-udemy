@@ -1,0 +1,25 @@
+sudo: required
+services:
+	- docker
+evn:
+	global:
+		- SHA=$(git rev-parse HEAD)
+		- CLOUDCORE_SDK_DISABLE_PROMS=1
+before_install:
+	- opennssl aes-256-cbc -K $<<key>> -iv $<<key>> -in service-account.json.env -out service-account.json -d
+	- curl http://sdk.cloud.google.com | bash > /dev/null;
+	- source $HOME/google-cloud-sdk/path.bash.inc
+	- gcloud components update kubectl
+	- gcloud auth activate-service-account --key-file service-account.json
+	- gcloud config set project <<project-id>>
+	- gcloud config set compute/zone <<zone>>
+	- gcloud container clusters get-credentials multi-cluster
+	- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+	- docker build -t artir3/docker-course-client -f ./client/Dockerfile.dev
+script:
+	- docker run -e CI=true artir3/docker-course-client npm run test
+deploy:
+	provider: script
+	script: barsh ./deploy.sh
+	on:
+		branch: master
