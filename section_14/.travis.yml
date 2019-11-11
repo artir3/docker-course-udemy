@@ -13,7 +13,7 @@ before_install:
 	- gcloud auth activate-service-account --key-file service-account.json
 	- gcloud config set project <<project-id>>
 	- gcloud config set compute/zone <<zone>>
-	- gcloud container clusters get-credentials multi-cluster
+	- gcloud container clusters get-credentials <claster name>
 	- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 	- docker build -t artir3/docker-course-client -f ./client/Dockerfile.dev
 script:
