@@ -5,9 +5,17 @@ metadata:
   annotations:
     kubernetes.io.ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-targer: /$1
+    certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
 spec:
+  tls:
+    - hosts: # put here you domain address
+      - k8s-multi.com
+      - www.k8s-multi.com
+      secretName: k8s-multi-com # put here your own name
   rules:
-    - http:
+    - hosts: k8s-multi.com # put here you domain address
+      http:
         paths:
           - path: /?(.*)
             backend:
@@ -17,3 +25,15 @@ spec:
             backend:
               serviceName: server-clusterip
               servicePort: 5000
+    - hosts: www.k8s-multi.com # put here you domain address
+      http:
+        paths:
+          - path: /?(.*)
+            backend:
+              serviceName: client-clusterip
+              servicePort: 3000
+          - path: /api/?(.*)
+            backend:
+              serviceName: server-clusterip
+              servicePort: 5000
+    
