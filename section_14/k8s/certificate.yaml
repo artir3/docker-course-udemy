@@ -1,20 +1,20 @@
 apiVersion: certmanager.k8s.io/v1aplha1
 kind: Certificate
 metadata:
-  name: k8s-multi-com-tsl
+  name: k8s-multi-com-tsl #put here your own name
 spec:
-  secretName: k8s-multi-com
+  secretName: k8s-multi-com #put here you domain address
   issuerRef: 
     name: letsencrypt-prod
     kind: ClusterIssuer
   commonName: k8s-multi.com #put here your domain name
-  dnsNames:
+  dnsNames: #put here you domain address
     - k8s-multi.com
     - www.k8s-multi.com
   acme:
     config:
       - http01:
           ingresClass: nginx
-        domains:
+        domains: #put here you domain address
           - k8s-multi.com
           - www.k8s-multi.com
