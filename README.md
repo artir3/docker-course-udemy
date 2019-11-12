@@ -1,17 +1,18 @@
-### This repository was created when I was learning Docker and Kubernetes from Udemy course.
+# Repository for learning from the Docker and Kubernetes course
+## This repository was created when I was learning Docker and Kubernetes from Udemy course.
 
 https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide 
 
-# Children repositories are 
+## Children repositories are 
 Section 7 -> https://github.com/artir3/docker-react
 Section 11 to 13 -> https://github.com/artir3/docker-multiconteiner
 
-# Warning 
+## Warning 
 There are some my changes from original code shown in the course.
 
 ## Info from instructor
 
-Finished Code Repositories and Diagrams
+"Finished Code Repositories and Diagrams
 Please note, the code in these repositories are not a replacement for the course notes provided for deprecations and fixes, they will still need to be applied.
 
 Diagrams:
@@ -33,3 +34,4 @@ https://github.com/StephenGrider/multi-docker
 Completed code for the Multi K8s Project:
 
 https://github.com/StephenGrider/multi-k8s
+"
