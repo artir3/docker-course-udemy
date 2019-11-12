@@ -31,7 +31,7 @@ build:
         - '**/*.js'
 deploy:
   kubectl:
-    manifests:
+    manifests: # NO ADD ANY IMPORTANT DATA, WHAT SHOUD BE RESTORED AFTER RESTART
     - k8s/client-deployment.yaml
     - k8s/server-deployment.yaml
     - k8s/worker-deployment.yaml
