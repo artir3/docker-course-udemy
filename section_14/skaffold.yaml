@@ -1,0 +1,35 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: section-
+build:
+  artifacts:
+  - image: artir3/docker-course-client
+    context: client
+    docker:
+      dockerfile: client/Dockerfile.dev
+    sync:
+      infer:
+        - '**/*.js'
+        - '**/*.css'
+        - '**/*.html'
+  - image: artir3/docker-course-server
+    context: server
+    docker:
+      dockerfile: server/Dockerfile.dev
+    sync:
+      infer:
+        - '**/*.js'
+  - image: artir3/docker-course-worker
+    context: worker
+    docker:
+      dockerfile: worker/Dockerfile.dev
+    sync:
+      infer:
+        - '**/*.js'
+deploy:
+  kubectl:
+    manifests:
+    - k8s/client-deployment.yaml
+    - k8s/server-deployment.yaml
+    - k8s/worker-deployment.yaml
