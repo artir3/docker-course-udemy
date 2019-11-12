@@ -1,8 +1,10 @@
 apiVersion: skaffold/v1
 kind: Config
 metadata:
-  name: section-
+  name: skaffold
 build:
+  local:
+    push: false
   artifacts:
   - image: artir3/docker-course-client
     context: client
@@ -33,3 +35,5 @@ deploy:
     - k8s/client-deployment.yaml
     - k8s/server-deployment.yaml
     - k8s/worker-deployment.yaml
+    - k8s/client-clusterip.yaml
+    - k8s/server-clusterIp.yaml
